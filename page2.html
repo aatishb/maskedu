@@ -5,7 +5,7 @@
 <head>
 
   <meta charset="utf-8">
-  <title>Who Does a Mask Protect?</title>
+  <title>How Masks Protect Communities</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="How Masks Stop the Spead of COVID-19">
@@ -42,22 +42,16 @@
     <h2>Summary of <a href="index.html">Page 1</a></h2>
 
     <p>
-      When both the contagious and the susceptible person wear a mask, the first mask cuts disease transmission in half, and the second mask once again cuts it in half. So disease transmission is 25% (compared to when neither wear masks). That's a 75% drop in the chance of infection. 
-    </p>
-
-  </div>
-
-  <anim-with-caption :mask1="true" :mask2="true" :eout="0.5" :ein="0.5" contagiousperson="Contagious Person" susceptibleperson="Susceptible Person"><span class="yellow"><b>Transmission Route 4:</b></span> Both people wear 50% effective masks.</anim-with-caption>
-
-  <div class="container">
-
-    <p>
-      If you think about it, it's surprising that a 50% effective mask can reduce the risk of infection by 75%.
-      This is possible because when both people wear masks, the chance of infection is halved twice.
-      This <b>double protection</b> makes masks much more effective than you might intuitively expect.
+      When both the contagious and the susceptible person wear 50% effective masks, the first mask cuts disease transmission in half, and the second mask cuts it in half again. So disease transmission is 50% × 50% = 25% (compared to when neither wear masks), which means the <b>drop in disease transmission</b> is 75%.
     </p>
 
     <img src="assets/route4-inv.png" alt="Disease Transmission in Route 4">
+
+    <p>
+      If you think about it, it's surprising that a 50% effective mask can reduce disease transmission by 75%.
+      This is possible because when both people wear masks, disease transmission is halved twice.
+      This <b>double protection</b> makes masks much more effective than you might intuitively expect.
+    </p>
 
     <p>So here are all four routes through which an airborne disease can spread from person to person.</p>
 
@@ -99,19 +93,19 @@
     <h2>From People to The Community</h2>
 
     <p>
-      So far, we've only looked at disease transmission between two people.
+      So far, we've only considered disease transmission between two people.
       How do we go from here to understanding disease transmission in the <i>community</i>?
     </p> 
 
     <p>Well, in the extreme limits, this is straightforward.</p> 
 
-    <p>For example, what if <b>nobody</b> wore a mask?</p>
+    <p>For example, what if <b>no one</b> wore a mask?</p>
 
     <br>
     <aside @click="expandaside1 = true;">
       <span>
         <p>
-          What types of the four different interactions could happen in a community where no one wore a mask? What would be the drop in transmission?
+          What types of the four different interactions could happen in a community where no one wore a mask? What would be the overall drop in transmission in the community?
           <span v-if="!expandaside1">(Click to expand)</span>
         </p>
       </span>
@@ -131,12 +125,12 @@
       </span>
     </aside>
     <br>
-    <p>What if <b>everybody</b> wore a mask?</p>
+    <p>What if <b>everyone</b> wore a mask?</p>
     <br>
     <aside @click="expandaside2 = true;">
       <span>
         <p>
-          What types of the four different interactions could happen in a community where everyone wore a mask? What would be the drop in transmission?
+          What types of the four different interactions could happen in a community where everyone wore a mask? What would be the overall drop in transmission in the community?
           <span v-if="!expandaside2">(Click to expand)</span>
         </p>
       </span>
@@ -178,7 +172,8 @@
 
     <p>
       Let's apply this logic to <i>any values</i> of <b>mask usage</b>.
-      Vary the slider below to see how 50% effective masks decrease the spread of disease.
+      Once again, we'll assume that each mask is 50% effective.
+      Drag the slider below to see how the spread of disease in the <b>community</b> depends on mask usage.
     </p>
 
   </div>
@@ -221,7 +216,7 @@
 
 
       <div class="row half bigsplash">
-        <span>Average Drop in Disease Transmission: <span class="dotted" style="font-size: 2rem;"><b>{{convertToPercent(1 - (1 - ein * p) * (1 - eout * p))}}</b></span>%</span>
+        <span>Drop in Community Disease Transmission: <span class="dotted" style="font-size: 2rem;"><b>{{convertToPercent(1 - (1 - ein * p) * (1 - eout * p))}}</b></span>%</span>
       </div>
 
       <div class="row half bigsplash">

@@ -109,7 +109,13 @@
   </div>
 
   <div class="container">
-    <p>What if both the contagious person <i>and</i> the susceptible person wear 50% effective masks?</p>
+    <p>What if <b>both</b> people wear 50% effective masks?</p>
+
+    <p>
+      Will the disease not be transmitted to the susceptible person?
+      What evidence do you have?
+    </p>
+
   </div>
 
   <anim-with-caption :mask1="false" :mask2="false" contagiousperson="Contagious Person" susceptibleperson="Susceptible Person"><span class="red"><b>Transmission Route 1:</b></span> The unmasked contagious person is near an unmasked susceptible person.<br>Disease transmission does not drop (0%).</anim-with-caption>
@@ -121,19 +127,23 @@
     <aside @click="expandaside3 = true;">
       <span>
         <p>
-          How much will disease transmission drop in <span class="yellow"><b>Transmission Route 4</b></span>, when both people are wearing 50% effective masks? What evidence do you have?
+          What percentage will the disease transmission drop in <span class="yellow"><b>Transmission Route 4</b></span>, when both individuals are wearing masks?
           <span v-if="!expandaside3">(Click to expand)</span>
         </p> 
       </span>
 
       <span v-if="expandaside3">
+
         <p>
-          The first mask cuts disease transmission in half, and the second mask also cuts the chance of infection in half. So when <i>both</i> people wear masks, disease transmission is halved twice, i.e. it is quartered.
+          The first mask cuts disease transmission in half, and the second mask cuts it in half again. So when <i>both</i> people wear masks, disease transmission is halved twice, i.e. it is quartered. We can see this in the simulation by noticing that some droplets make it through both barriers. 
         </p>
+
         <p>
           Since 50% × 50% = 25%, in this scenario disease transmission becomes 25%, which means the <b>drop in disease transmission</b> is 75%.
         </p>
+
         <img src="assets/route4-inv.png" alt="Disease Transmission in Route 4">
+
       </span>
     </aside>
     <p>Continue to <a href="page2.html">next page</a>.</p>
