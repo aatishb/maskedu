@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <title>The Multiplicative Power of Masks</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="An Explorable Essay on How Masks Can End COVID-19">
+  <meta name="author" content="Aatish Bhatia">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,600;1,300;1,600&family=Raleway:wght@200;300;400;700&display=swap" rel="stylesheet"> 
+
+  <link rel="stylesheet" type="text/css" href="css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <!-- Twitter Card data -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Why Masks Work Better Than You Think: An Interactive Essay">
+  <meta name="twitter:description" content="Even partly-effective masks can stop the spread of COVID-19, so long as enough people wear them.">
+  <meta name="twitter:site" content="@aatishb">
+  <!-- Twitter Summary card images must be at least 120x120px -->
+  <meta name="twitter:image" content="https://aatishb.com/maskmath/assets/twitter-banner.png">
+  
+  <!-- Open Graph data -->
+  <meta property="og:title" content="Why Masks Work Better Than You Think: An Interactive Essay" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://aatishb.com/maskmath/" />
+  <meta property="og:image" content="https://aatishb.com/maskmath/assets/twitter-banner.png" />
+  <meta property="og:description" content="Even partly-effective masks can stop the spread of COVID-19, so long as enough people wear them." />
+
+</head>
+
+<body>
+<div id="root" class="page">
+
+  <div class="container">
+
+    <h2>Summary of <a href="index.html">Page 1</a></h2>
+
+    <p>
+      When both the contagious and the susceptible person wear a mask, the first mask cuts disease transmission in half, and the second mask once again cuts it in half. So disease transmission is 25% (compared to when neither wear masks). That's a 75% drop in the chance of infection. 
+    </p>
+
+  </div>
+
+  <anim-with-caption :mask1="true" :mask2="true" :eout="0.5" :ein="0.5" contagiousperson="Contagious Person" susceptibleperson="Susceptible Person"><span class="yellow"><b>Transmission Route 4:</b></span> Both people wear 50% effective masks.</anim-with-caption>
+
+  <div class="container">
+
+    <p>
+      If you think about it, it's surprising that a 50% effective mask can reduce the risk of infection by 75%.
+      This is possible because when both people wear masks, the chance of infection is halved twice.
+      This <b>double protection</b> makes masks much more effective than you might intuitively expect.
+    </p>
+
+    <img src="assets/route4-inv.png" alt="Disease Transmission in Route 4">
+
+    <p>So here are all four routes through which an airborne disease can spread from person to person.</p>
+
+  </div>
+
+  <div class="graphic">
+    <div class="graphic-container">
+
+      <div class="row big-small">
+
+        <div class="column onehundredpx">
+          <div class="center">Disease Transmission Route</div>
+          <anim :mask1="false" :mask2="false"></anim>
+          <anim :mask1="true" :mask2="false" :eout="0.5"></anim>
+          <anim :mask1="false" :mask2="true" :ein="0.5"></anim>
+          <anim :mask1="true" :mask2="true" :eout="0.5" :ein="0.5"></anim>
+        </div>
+
+        <div class="column onehundredpx">
+          <div class="center">Drop in Disease Transmission</div>
+          <div class="center"><span class="red">0%</span></div>
+          <div class="center"><span class="orange">50%</span></div>
+          <div class="center"><span class="orange">50%</span></div>
+          <div class="center"><span class="yellow">75%</span></div>
+        </div>
+
+      </div>
+
+      <div class="caption">
+        The four ways that COVID-19 can spread from person to person. This assumes a 50% effective mask.
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="container">
+
+    <h2>From People to The Community</h2>
+
+    <p>
+      So far, we've only looked at disease transmission between two people.
+      How do we go from here to understanding disease transmission in the <i>community</i>?
+    </p> 
+
+    <p>Well, in the extreme limits, this is straightforward.</p> 
+
+    <p>For example, what if <b>nobody</b> wore a mask?</p>
+
+    <br>
+    <aside @click="expandaside1 = true;">
+      <span>
+        <p>
+          What types of the four different interactions could happen in a community where no one wore a mask? What would be the drop in transmission?
+          <span v-if="!expandaside1">(Click to expand)</span>
+        </p>
+      </span>
+
+      <span v-if="expandaside1">
+        <p>
+          If <b>nobody</b> wore a mask, then whenever two people meet, the chance that <span class="red">neither wears a mask</span> is 100%.
+        </p>
+
+        <network :maskusage="0"></network>
+        <div class="caption">(Click on the simulation to pause/resume.)</div>
+
+        <p>
+          So we'd only have to consider the <span class="red">first route</span> of disease transmission, and the community would see <span class="red">no drop</span> in disease transmission.
+        </p>
+
+      </span>
+    </aside>
+    <br>
+    <p>What if <b>everybody</b> wore a mask?</p>
+    <br>
+    <aside @click="expandaside2 = true;">
+      <span>
+        <p>
+          What types of the four different interactions could happen in a community where everyone wore a mask? What would be the drop in transmission?
+          <span v-if="!expandaside2">(Click to expand)</span>
+        </p>
+      </span>
+
+      <span v-if="expandaside2">
+        <p>
+          If <b>everyone</b> wore a mask, then whenever two people meet, the chance that they <span class="yellow">both wear masks</span> is 100%.
+        </p>
+
+        <network :maskusage="1"></network>
+        <div class="caption">(Click on the simulation to pause/resume.)</div>
+
+        <p>
+          In this case, we’d only have to consider the <span class="yellow">last route</span> of disease transmission.
+          Assuming masks are 50% effective in each direction, the community would see a <span class="yellow">75% drop</span> in disease transmission.
+        </p>
+      </span>
+    </aside>
+
+    <p>
+      So when <i>everyone</i> wears a mask (or when <i>no one</i> wears one), we can calculate the drop in disease transmission in the community, because there's only one route involved.
+    </p>
+
+    <p>
+      But in reality, some people wear masks and others don’t.
+      Which means the virus can spread through a mix of all four routes.
+      How likely each route is will depend on how many people wear masks.
+    </p>
+
+    <label class="row half bigsplash">
+      <div>Mask Usage: <span class="dotted">{{convertToPercent(pnetwork)}}</span>%</div>
+      <slider v-model="pnetwork" :min="0" :max="1" :step="0.01"></slider>
+    </label>
+
+    <network :maskusage="pnetwork"></network>
+    <div class="caption">(Click on the simulation to pause/resume.)</div>
+
+    <h2>Maskology</h2>
+
+    <p>
+      Let's apply this logic to <i>any values</i> of <b>mask usage</b>.
+      Vary the sliders below to see how 50% effective masks influence the spread of disease.
+    </p>
+
+  </div>
+
+  <div class="graphic">
+    <div class="graphic-container">
+
+      <label class="row half bigsplash">
+        <div>Mask Usage: <span class="dotted">{{convertToPercent(p)}}</span>%</div>
+        <slider v-model="p" :min="0" :max="1" :step="0.01"></slider>
+      </label>
+
+      <div class="row big-small-small padabove">
+
+        <div class="column onehundredpx">
+          <div class="center">Disease Transmission Route</div>
+          <anim :mask1="false" :mask2="false"></anim>
+          <anim :mask1="true" :mask2="false" :eout="eout"></anim>
+          <anim :mask1="false" :mask2="true" :ein="ein"></anim>
+          <anim :mask1="true" :mask2="true" :eout="eout" :ein="ein"></anim>
+        </div>
+
+        <div class="column onehundredpx">
+          <div class="center">Drop in Disease Transmission</div>
+          <div class="center"><span><span class="dotted">{{convertToPercent(d1)}}</span>%</span></div>
+          <div class="center"><span><span class="dotted">{{convertToPercent(d2)}}</span>%</span></div>
+          <div class="center"><span><span class="dotted">{{convertToPercent(d3)}}</span>%</span></div>
+          <div class="center"><span><span class="dotted">{{convertToPercent(d4)}}</span>%</span></div>
+        </div>
+
+        <div class="column onehundredpx">
+          <div class="center">Chance of This Route</div>
+          <div class="center"><span><span class="dotted">{{convertToPercent(l1)}}</span>%</span></div>
+          <div class="center"><span><span class="dotted">{{convertToPercent(l2)}}</span>%</span></div>
+          <div class="center"><span><span class="dotted">{{convertToPercent(l3)}}</span>%</span></div>
+          <div class="center"><span><span class="dotted">{{convertToPercent(l4)}}</span>%</span></div>
+        </div>
+
+      </div>
+
+
+      <div class="row half bigsplash">
+        <span>Average Drop in Disease Transmission: <span class="dotted" style="font-size: 2rem;"><b>{{convertToPercent(1 - (1 - ein * p) * (1 - eout * p))}}</b></span>%</span>
+      </div>
+
+      <div class="row half bigsplash">
+        <span>Drop in Disease Transmission to Non-Mask Wearers: <span class="dotted">{{convertToPercent(eout * p)}}</span>%</span>
+      </div>
+
+      <div class="row half bigsplash">
+        <span>Drop in Disease Transmission to Mask-Wearers: <span class="dotted">{{convertToPercent(1 - (1 - eout * p) * (1 - ein))}}</span>%</span>
+      </div>
+
+    </div>
+  </div>
+  
+</div>
+
+<script src="libraries/plotly-basic.min.js"></script>
+<script src="libraries/vue.min.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver"></script>
+<script src="libraries/vue-observe-visibility.js"></script>
+<script src="libraries/p5.min.js"></script>
+<script src="libraries/lambertw.js"></script>
+<script src="js/vue-definitions.js"></script>
+</body>
+
+</html>

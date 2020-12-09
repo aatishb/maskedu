@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <title>Mask Math Calculator</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Aatish Bhatia">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,600;1,300;1,600&family=Raleway:wght@200;300;400;700&display=swap" rel="stylesheet"> 
+
+  <link rel="stylesheet" type="text/css" href="css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <style>
+    .graph {
+      height: 400px;
+    }
+  </style>
+</head>
+
+<body>
+<div id="root">
+
+  <div class="graphic">
+    <div class="graphic-container">
+
+      <h2 style="text-align: center;">The Multiplicative Power of Masks</h2>
+
+      <label class="row half bigsplash" style="font-size: 1.5rem;">
+        <div>Mask Usage: <b><span class="dotted">{{convertToPercent(p)}}</span>%</b></div>
+        <slider v-model="p" :min="0" :max="1" :step="0.01"></slider>
+      </label>
+
+      <label class="row half bigsplash" style="font-size: 1.5rem; padding-top: 1rem;">
+        <div>Mask Effectiveness: <b><span class="dotted">{{convertToPercent(e)}}</span>%</b></div>
+        <slider v-model="e" :min="0" :max="0.99" :step="0.01"></slider>
+      </label>
+
+      <div class="row bigsplash" style="font-size: 1.5rem; padding-top: 2rem;">
+        <b>Disease Transmission</b>
+      </div>
+
+      <div class="row bigsplash" style="width: 500px; position: relative">
+
+          <div style="z-index:2; width: 100%; height: 100%; position: absolute; left: 0; top: 0; right: 0; bottom: 0;">
+            <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 3rem; margin-top: 0.66rem">
+              <span v-if="1 - Math.pow(1 - e * p, 2) > e * p"><</span>
+              <span v-else>=</span>
+            </div>
+          </div>
+
+          <div style="flex-basis: 50%; display: flex; flex-direction: column; opacity: 0.66; padding-left: 50px;">
+            <div style="flex-basis: 50%; display: flex; justify-content: center; align-items: center; padding-bottom: 0.25rem;">
+              <span style="font-size: 1.25rem;">intuitive drop&#8239;<sup>1</sup></span>
+            </div>
+            <div style="flex-basis: 50%; display: flex; justify-content: center; align-items: center;">
+              <b><span class="dotted" style="font-size: 3rem;">{{Math.round(100 * e * p)}}</span><span style="font-size: 2rem;">%</span></b>
+            </div>
+          </div>
+
+          <div style="flex-basis: 50%; display: flex; flex-direction: column; padding-right: 50px;">
+            <div style="flex-basis: 50%; display: flex; justify-content: center; align-items: center; padding-bottom: 0.25rem;">
+              <span style="font-size: 1.25rem;">actual drop&#8239;<sup>2</sup></span>
+            </div>
+            <div style="flex-basis: 50%; display: flex; justify-content: center; align-items: center;">
+              <b><span class="dotted" style="font-size: 3rem;">{{Math.round(100*(1 - (1 - e * p) * (1 - e * p)))}}</span><span style="font-size: 2rem;">%</span></b>
+            </div>
+          </div>
+
+      </div>
+
+
+      <div class="row bigsplash" style="font-size: 1.5rem; padding-top: 1rem; width: 500px;">
+        <graph 
+        :traces="[{
+          x: ['<b>intuitive</b>', '<b>actual</b>'],
+          y: [1 - e * p, Math.pow(1 - e * p, 2)],
+          type: 'bar',
+          marker: {
+            color: ['rgba(96, 117, 111, 1)', 'rgba(192, 234, 171, 1)']
+          },
+          hoverinfo: 'y',
+        }]"
+        :layout="{
+          showlegend: false,
+          width: 500,
+          height: 400,
+          xaxis: {
+            color: this.graphTextColor,
+            showticklabels: false,
+          },
+          yaxis: {
+            range: [0, 1],
+            color: this.graphTextColor,
+            tickformat: '%',
+          },
+          paper_bgcolor: this.graphBackgroundColor,
+          plot_bgcolor: this.graphBackgroundColor,
+          font: {
+            family: 'Open Sans, sans-serif',
+            color: this.graphTextColor,
+            size: 0.9 * this.fontSize
+          },
+
+          shapes: [
+              {
+                type: 'line',
+                xref: 'paper',
+                yref: 'paper',
+                x0: 0,
+                y0: 0.4,
+                x1: 1,
+                y1: 0.4,
+                opacity: 0.66,
+                line: {
+                    color: 'rgb(0,0,51)',
+                    width: 50,
+                },
+                //layer: 'below',
+              },
+          ],
+
+          annotations: [
+            {
+              y: Math.pow(1 - e * p, 2),
+              x: 1,
+              xref: 'x',
+              yref: 'y',
+              showarrow: true,
+              arrowhead: 1,
+              arrowsize: 1,
+              arrowwidth: 5,
+              axref: 'x',
+              ayref: 'y',
+              ay: Math.pow(1 - e * p, 2) < 0.97 ? 1.04 : 1,
+              ax: 1,
+              arrowcolor: this.graphTextColor,
+              opacity: 1,
+            },
+            {
+              y: 1 - e * p,
+              x: 0,
+              xref: 'x',
+              yref: 'y',
+              showarrow: true,
+              arrowhead: 1,
+              arrowsize: 1,
+              arrowwidth: 5,
+              axref: 'x',
+              ayref: 'y',
+              ay: 1 - e * p < 0.97 ? 1.04 : 1,
+              ax: 0,
+              arrowcolor: this.graphTextColor,
+              opacity: 0.66,
+            },
+            {
+              xref: 'paper',
+              yref: 'y',
+              x: 0.5,
+              y: 0.4,
+              text: 'Drop needed to stop spread of COVID-19',
+              align: 'center',
+              showarrow: false,
+              font: {
+                color: this.graphTextColor
+              },
+              //bgcolor: 'rgb(0,0,51)',
+            }
+          ],
+
+          margin: {
+            l: 50,
+            r: 50,
+            b: 10,
+            t: 15,
+            pad: 0
+          },
+        }"
+        :config="{
+          displayModeBar: false,
+        }">
+        </graph>
+
+      </div>
+
+      <label class="row bigsplash" style="padding-top: 1rem;">
+        <div><sup>1</sup>&#8239;Intuitive drop <span style="font-size: 1.33rem;">=</span> mask effectiveness <span style="font-size: 1.25rem;">×</span> mask usage</div>
+      </label>
+
+      <label class="row bigsplash">
+        <div><sup>2</sup>&#8239;Assuming masks are equally effective on inhalation & exhalation</div>
+      </label>
+
+      <label class="row bigsplash">
+        <div><a href="https://aatishb.com/maskmath/">Learn more</a> about the power of masks.</div>
+      </label>
+
+    </div>
+  </div>
+
+</div>
+
+<script src="libraries/plotly-basic.min.js"></script>
+<script src="libraries/vue.min.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver"></script>
+<script src="libraries/vue-observe-visibility.js"></script>
+<script src="libraries/p5.min.js"></script>
+<script src="libraries/lambertw.js"></script>
+<script src="js/vue-definitions.js"></script>
+</body>
+
+</html>

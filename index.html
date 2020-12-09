@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <title>The Multiplicative Power of Masks</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="An Explorable Essay on How Masks Can End COVID-19">
+  <meta name="author" content="Aatish Bhatia">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,600;1,300;1,600&family=Raleway:wght@200;300;400;700&display=swap" rel="stylesheet"> 
+
+  <link rel="stylesheet" type="text/css" href="css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <!-- Twitter Card data -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Why Masks Work Better Than You Think: An Interactive Essay">
+  <meta name="twitter:description" content="Even partly-effective masks can stop the spread of COVID-19, so long as enough people wear them.">
+  <meta name="twitter:site" content="@aatishb">
+  <!-- Twitter Summary card images must be at least 120x120px -->
+  <meta name="twitter:image" content="https://aatishb.com/maskmath/assets/twitter-banner.png">
+  
+  <!-- Open Graph data -->
+  <meta property="og:title" content="Why Masks Work Better Than You Think: An Interactive Essay" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://aatishb.com/maskmath/" />
+  <meta property="og:image" content="https://aatishb.com/maskmath/assets/twitter-banner.png" />
+  <meta property="og:description" content="Even partly-effective masks can stop the spread of COVID-19, so long as enough people wear them." />
+
+</head>
+
+<body>
+<div id="root" class="page">
+
+  <div class="container">
+
+    <h2>Who Does a Mask Protect?</h2>
+
+    <p>
+      Let’s imagine that a contagious person wears a 50% effective mask.
+      By "50% effective" we mean that wearing this mask cuts in half the chance that this person will infect a nearby susceptible person.
+    </p>
+
+  </div>
+
+  <anim-with-caption :mask1="false" :mask2="false" contagiousperson="Contagious Person" susceptibleperson="Susceptible Person"><span class="red"><b>Transmission Route 1:</b></span> The unmasked contagious person is near an unmasked susceptible person.<br>Disease transmission does not drop (0%).</anim-with-caption>
+
+  <anim-with-caption :mask1="true" :mask2="false" :eout="0.5" contagiousperson="Contagious Person" susceptibleperson="Susceptible Person"><span class="orange"><b>Transmission Route 2:</b></span> The contagious person wears a 50% effective mask.</anim-with-caption>
+
+  <div class="container">
+    <br>
+    <aside @click="expandaside1 = true;">
+      <span>
+        <p>
+          How much will disease transmission drop in <span class="orange"><b>Transmission Route 2</b></span>, when the contagious person wears a 50% effective mask? How do we know?
+          <span v-if="!expandaside1">(Click to expand)</span>
+        </p>
+      </span>
+
+      <span v-if="expandaside1">
+        <p>
+          In this scenario, the contagious person exhales through the mask. Since we assumed that the mask is 50% effective, disease transmission drops by 50%. We can see this in the simulation by noticing that about half the droplets make it through the barrier.
+        </p>
+        <img src="assets/route2-inv.png" alt="Disease Transmission in Route 2">
+      </span>
+    </aside>
+
+  </div>
+
+  <div class="container">
+
+    <p>
+      What if the <b>susceptible person wears the mask instead</b>?
+    </p>
+
+    <p>
+      The effectiveness of a mask usually depends on whether you’re <b>inhaling</b> or <b>exhaling</b> through it.
+      Let’s keep things simple and assume that masks are equally effective when we breathe in or breathe out through them.
+    </p>
+  </div>
+
+  <anim-with-caption :mask1="false" :mask2="false" contagiousperson="Contagious Person" susceptibleperson="Susceptible Person"><span class="red"><b>Transmission Route 1:</b></span> The unmasked contagious person is near an unmasked susceptible person.<br>Disease transmission does not drop (0%).</anim-with-caption>
+
+  <anim-with-caption :mask1="false" :mask2="true" :ein="0.5" contagiousperson="Contagious Person" susceptibleperson="Susceptible Person"><span class="orange"><b>Transmission Route 3:</b></span> The susceptible person wears a 50% effective mask.</anim-with-caption>
+
+  <div class="container">
+    <br>
+    <aside @click="expandaside2 = true;">
+      <span>
+        <p>
+          How much will disease transmission drop in <span class="orange"><b>Transmission Route 3</b></span>, when the susceptible person wears a 50% effective mask? How do we know?
+          <span v-if="!expandaside2">(Click to expand)</span>
+        </p>
+      </span>
+
+      <span v-if="expandaside2">
+        <p>
+          In this scenario, the susceptible person inhales through the mask. Since we assumed the mask is equally effective on inhalation and exhalation, we still expect disease transmission to drop by 50%. We can see this in the simulation by noticing that about half the droplets make it through the barrier.
+        </p>
+        <img src="assets/route3-inv.png" alt="Disease Transmission in Route 3">
+      </span>
+    </aside>
+
+  </div>
+
+  <div class="container">
+    <p>What if both the contagious person <i>and</i> the susceptible person wear 50% effective masks?</p>
+  </div>
+
+  <anim-with-caption :mask1="false" :mask2="false" contagiousperson="Contagious Person" susceptibleperson="Susceptible Person"><span class="red"><b>Transmission Route 1:</b></span> The unmasked contagious person is near an unmasked susceptible person.<br>Disease transmission does not drop (0%).</anim-with-caption>
+
+  <anim-with-caption :mask1="true" :mask2="true" :eout="0.5" :ein="0.5" contagiousperson="Contagious Person" susceptibleperson="Susceptible Person"><span class="yellow"><b>Transmission Route 4:</b></span> Both people wear 50% effective masks.</anim-with-caption>
+
+  <div class="container">
+    <br>
+    <aside @click="expandaside3 = true;">
+      <span>
+        <p>
+          How much will disease transmission drop in <span class="yellow"><b>Transmission Route 4</b></span>, when both people are wearing 50% effective masks? What evidence do you have?
+          <span v-if="!expandaside3">(Click to expand)</span>
+        </p> 
+      </span>
+
+      <span v-if="expandaside3">
+        <p>
+          The first mask cuts disease transmission in half, and the second mask also cuts the chance of infection in half. So when <i>both</i> people wear masks, disease transmission is halved twice, i.e. it is quartered.
+        </p>
+        <p>
+          Since 50% × 50% = 25%, in this scenario disease transmission becomes 25%, which means the <b>drop in disease transmission</b> is 75%.
+        </p>
+        <img src="assets/route4-inv.png" alt="Disease Transmission in Route 4">
+      </span>
+    </aside>
+    <p>Continue to <a href="page2.html">next page</a>.</p>
+  </div>
+
+</div>
+
+<script src="libraries/plotly-basic.min.js"></script>
+<script src="libraries/vue.min.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver"></script>
+<script src="libraries/vue-observe-visibility.js"></script>
+<script src="libraries/p5.min.js"></script>
+<script src="libraries/lambertw.js"></script>
+<script src="js/vue-definitions.js"></script>
+</body>
+
+</html>
