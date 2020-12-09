@@ -105,22 +105,24 @@
     <aside @click="expandaside1 = true;">
       <span>
         <p>
-          What types of the four different interactions could happen in a community where no one wore a mask? What would be the overall drop in transmission in the community?
+          What types of the four different interactions could happen in a community where <b>no one</b> wore a mask? What would be the overall drop in transmission in the community?
           <span v-if="!expandaside1">(Click to expand)</span>
         </p>
       </span>
 
       <span v-if="expandaside1">
         <p>
-          If <b>nobody</b> wore a mask, then whenever two people meet, the chance that <span class="red">neither wears a mask</span> is 100%.
+          In this case whenever two people meet, the chance that <span class="red">neither wears a mask</span> is 100%. This means only <span class="red">first route</span> of disease transmission can happen, and so the community would see <span class="red">no drop</span> in disease transmission.
+
         </p>
 
-        <network :maskusage="0"></network>
-        <div class="caption">(Click on the simulation to pause/resume.)</div>
-
-        <p>
-          So we'd only have to consider the <span class="red">first route</span> of disease transmission, and the community would see <span class="red">no drop</span> in disease transmission.
-        </p>
+        <div>
+          <network :maskusage="0"></network>
+          <div class="caption">
+            A community where no one wears a mask.<br>
+            (Click on the simulation to pause/resume.)
+          </div>
+        </div>
 
       </span>
     </aside>
@@ -130,28 +132,33 @@
     <aside @click="expandaside2 = true;">
       <span>
         <p>
-          What types of the four different interactions could happen in a community where everyone wore a mask? What would be the overall drop in transmission in the community?
+          What types of the four different interactions could happen in a community where <b>everyone</b> wore a mask? What would be the overall drop in transmission in the community?
           <span v-if="!expandaside2">(Click to expand)</span>
         </p>
       </span>
 
       <span v-if="expandaside2">
         <p>
-          If <b>everyone</b> wore a mask, then whenever two people meet, the chance that they <span class="yellow">both wear masks</span> is 100%.
+          In this case whenever two people meet, the chance that they <span class="yellow">both wear masks</span> is 100%.
         </p>
 
-        <network :maskusage="1"></network>
-        <div class="caption">(Click on the simulation to pause/resume.)</div>
+        <div>
+          <network :maskusage="1"></network>
+          <div class="caption">
+            A community where every one wears a mask.<br>
+            (Click on the simulation to pause/resume.)
+          </div>
+        </div>
 
         <p>
-          In this case, we’d only have to consider the <span class="yellow">last route</span> of disease transmission.
+          This means only the <span class="yellow">last route</span> of disease transmission can happen.
           Assuming masks are 50% effective in each direction, the community would see a <span class="yellow">75% drop</span> in disease transmission.
         </p>
       </span>
     </aside>
 
     <p>
-      So when <i>everyone</i> wears a mask (or when <i>nobody</i> wears one), we can calculate the drop in disease transmission in the community, because there's only one route involved.
+      So when <i>everyone</i> wears a mask (or when <i>no one</i> wears one), we can calculate the drop in disease transmission in the community, because there's only one route involved.
     </p>
 
     <p>
@@ -160,20 +167,25 @@
       How likely each route is will depend on how many people wear masks.
     </p>
 
-    <label class="row half bigsplash">
+    <label class="row half bigsplash" style="margin-bottom: 0.75rem;">
       <div>Mask Usage: <span class="dotted">{{convertToPercent(pnetwork)}}</span>%</div>
       <slider v-model="pnetwork" :min="0" :max="1" :step="0.01"></slider>
     </label>
 
-    <network :maskusage="pnetwork"></network>
-    <div class="caption">(Click on the simulation to pause/resume.)</div>
+    <div>
+      <network :maskusage="pnetwork"></network>
+      <div class="caption">
+        A community where some percentage of people wear masks.<br>
+        (Click on the simulation to pause/resume.)
+      </div>
+    </div>
 
-    <h2>Maskology</h2>
+    <h2>How Masks Protect Communities</h2>
 
     <p>
       Let's apply this logic to <i>any values</i> of <b>mask usage</b>.
       Once again, we'll assume that each mask is 50% effective.
-      Drag the slider below to see how the spread of disease in the <b>community</b> depends on mask usage.
+      Drag the slider below to see how disease spread in the <b>community</b> depends on mask usage.
     </p>
 
   </div>
