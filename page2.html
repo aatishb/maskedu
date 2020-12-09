@@ -116,12 +116,10 @@
 
         </p>
 
-        <div>
-          <network :maskusage="0"></network>
-          <div class="caption">
-            A community where no one wears a mask.<br>
-            (Click on the simulation to pause/resume.)
-          </div>
+        <network :maskusage="0"></network>
+        <div class="caption">
+          A community where no one wears a mask.<br>
+          (Click on the simulation to pause/resume.)
         </div>
 
       </span>
@@ -140,20 +138,16 @@
       <span v-if="expandaside2">
         <p>
           In this case whenever two people meet, the chance that they <span class="yellow">both wear masks</span> is 100%.
-        </p>
-
-        <div>
-          <network :maskusage="1"></network>
-          <div class="caption">
-            A community where every one wears a mask.<br>
-            (Click on the simulation to pause/resume.)
-          </div>
-        </div>
-
-        <p>
           This means only the <span class="yellow">last route</span> of disease transmission can happen.
           Assuming masks are 50% effective in each direction, the community would see a <span class="yellow">75% drop</span> in disease transmission.
         </p>
+
+        <network :maskusage="1"></network>
+        <div class="caption">
+          A community where every one wears a mask.<br>
+          (Click on the simulation to pause/resume.)
+        </div>
+
       </span>
     </aside>
 
@@ -172,12 +166,10 @@
       <slider v-model="pnetwork" :min="0" :max="1" :step="0.01"></slider>
     </label>
 
-    <div>
-      <network :maskusage="pnetwork"></network>
-      <div class="caption">
-        A community where some percentage of people wear masks.<br>
-        (Click on the simulation to pause/resume.)
-      </div>
+    <network :maskusage="pnetwork"></network>
+    <div class="caption">
+      A community where some percentage of people wear masks.<br>
+      (Click on the simulation to pause/resume.)
     </div>
 
     <h2>How Masks Protect Communities</h2>
