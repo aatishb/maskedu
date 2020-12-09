@@ -177,18 +177,18 @@
     <p>
       Let's apply this logic to <i>any values</i> of <b>mask usage</b>.
       Once again, we'll assume that each mask is 50% effective.
-      Drag the slider below to see how disease spread in the <b>community</b> depends on mask usage.
+      Drag the slider below to see how community disease transmission depends on mask usage.
     </p>
+
+    <label class="row half bigsplash">
+      <div>Mask Usage: <span class="dotted">{{convertToPercent(p)}}</span>%</div>
+      <slider v-model="p" :min="0" :max="1" :step="0.01"></slider>
+    </label>
 
   </div>
 
   <div class="graphic">
     <div class="graphic-container">
-
-      <label class="row half bigsplash">
-        <div>Mask Usage: <span class="dotted">{{convertToPercent(p)}}</span>%</div>
-        <slider v-model="p" :min="0" :max="1" :step="0.01"></slider>
-      </label>
 
       <div class="row big-small-small padabove">
 
