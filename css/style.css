@@ -98,6 +98,13 @@ a {
   font-weight: 600;
 }
 
+.smaller > div {
+  font-size: 1rem !important;
+}
+
+.stretch {
+  width: 100%;
+}
 
 .page {
   display: flex;
@@ -196,6 +203,15 @@ a {
   flex-basis: 40%;
 }
 
+/* two column */
+.small-big > div:nth-child(1) {
+  flex-basis: 40%;
+}
+
+.small-big > div:nth-child(2) {
+  flex-basis: 60%;
+}
+
 /* three column */
 .big-small-small > div:nth-child(1) {
   flex-basis: 60%;
@@ -265,6 +281,10 @@ a {
  /*border-bottom: 0.5rem solid rgb(36,3,64);*/
 }
 
+.fiftypx > div {
+  height: 50;
+}
+
 .short {
   height: 50px;
 }
@@ -317,6 +337,10 @@ a {
 
 .half > div {
   flex-basis: 50%;
+}
+
+.third > div {
+  flex-basis: 33%;
 }
 
 .slider {

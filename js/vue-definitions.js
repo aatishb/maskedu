@@ -47,12 +47,30 @@ Vue.component('network', {
 
   template: `
     <div class="nocursor">
-      <p5 src="js/sketch2.js" :data="{maskusage: maskusage, height: height}"></p5>
+      <p5 src="js/sketch2.js" :data="{maskusage: maskusage, height: height, networkdata: networkdata, pausable: pausable}" v-bind.sync="networkdata"></p5>
     </div>`,
 
-  props: ['maskusage', 'height']
+  props: ['maskusage', 'height', 'networkdata', 'pausable']
 })
 
+// percentage bar component
+
+Vue.component('percentbar', {
+  template: `
+    <div class="row half">
+
+      <div :style="{color: color}" class="center bigger">{{percent}}</div>
+
+      <div :style="{border: '1px solid ' + color}">
+        <div :style="{backgroundColor: color, width: percent, height: '100%'}">
+        </div>
+      </div>
+
+    </div>
+  `,
+
+  props: ['color', 'percent']
+})
 // mask animation component
 Vue.component('anim', {
   template: '<p5 src="js/sketch1.js" :data="{mask1: mask1, mask2: mask2, eout: eout, ein: ein}"></p5>',
@@ -243,6 +261,14 @@ let app = new Vue({
     expandaside1: false,
     expandaside2: false,
     expandaside3: false,
+    networkdata: {
+      numint0: 0.25, // number of interactions with zero masks
+      numint1: 0.5,  // number of interactions with one mask
+      numint2: 0.25, // number of interactions with two masks
+    },
+    red: 'rgb(220, 60, 60)',
+    orange: 'rgb(220, 142, 0)',
+    yellow: 'rgb(220, 220, 110)'
   },
 
   methods: {
@@ -293,6 +319,16 @@ let app = new Vue({
     },
     l4() {
       return this.p * this.p;
+    },
+
+    p0() {
+      return this.convertToPercent(this.networkdata.numint0)+'%';
+    },
+    p1() {
+      return this.convertToPercent(this.networkdata.numint1)+'%';
+    },
+    p2() {
+      return this.convertToPercent(this.networkdata.numint2)+'%';
     },
   }
 

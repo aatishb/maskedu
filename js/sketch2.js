@@ -13,13 +13,14 @@ function sketch(parent) { // we pass the sketch data from the parent
     let width, height;
 
     // VARIABLES
-    let initialParticles = 30; 
+    let initialParticles = 50; 
     let particleSize = 30;
     let drag = 0.99;
     let bounciness = 0.2;
     let range = 125;
 
     let paused = false;
+    let numint0, numint1, numint2;
 
     function checkIfMouseIsOverCanvas() {
       if (!mouseOnScreen) {
@@ -43,14 +44,14 @@ function sketch(parent) { // we pass the sketch data from the parent
     p.setup = function() {
       target = parent.$el;
       width = target.clientWidth;
-      height = 400 * parent.data.height;
+      height = width * parent.data.height;
       let canvas = p.createCanvas(width, height);
       canvas.parent(parent.$el);
       p.noStroke();
       p.strokeWeight(2);
       p.imageMode(p.CENTER);
 
-      createParticles(width);
+      createParticles(width*height);
 
     };
 
@@ -76,6 +77,13 @@ function sketch(parent) { // we pass the sketch data from the parent
         }
 
         checkIfMouseIsOverCanvas();
+
+        let total = numint0 + numint1 + numint2;
+        if (p.frameCount %  60 == 0) {
+          parent.$emit('update:numint0', numint0/total);
+          parent.$emit('update:numint1', numint1/total);
+          parent.$emit('update:numint2', numint2/total);
+        }
       }
 
     };
@@ -91,14 +99,14 @@ function sketch(parent) { // we pass the sketch data from the parent
 
     p.mouseClicked = function() {
       
-      /*
-      checkIfMouseIsOverCanvas();
-      
-      if (mouseOnScreen) {
-        paused = !paused;
+      if (parent.data.pausable) {
+        checkIfMouseIsOverCanvas();
+        
+        if (mouseOnScreen) {
+          paused = !paused;
+        }
       }
-      */
-      
+
     }
 
     // this is a new function we've added to p5
@@ -218,6 +226,10 @@ function sketch(parent) { // we pass the sketch data from the parent
 
       let l = particleArray.length;
 
+      numint0 = 0;
+      numint1 = 0;
+      numint2 = 0;
+
       for (let i = 0; i < l; i++) {
         for (let j = 0; j < i; j++) {
           let p1 = particleArray[i];
@@ -232,10 +244,13 @@ function sketch(parent) { // we pass the sketch data from the parent
 
             if (p1.isMasked && p2.isMasked) {
               p.stroke(220, 220, 110, opacity);
+              numint2++;
             } else if(p1.isMasked || p2.isMasked) {
               p.stroke(220, 142, 0, opacity);
+              numint1++;
             } else {
               p.stroke(220, 60, 60, opacity);
+              numint0++;
             }
             p.line(p1.x, p1.y, p2.x, p2.y);
           }
@@ -243,10 +258,10 @@ function sketch(parent) { // we pass the sketch data from the parent
       }
     }
 
-    function createParticles(width) {
+    function createParticles(area) {
       let maskusage = parent.data.maskusage;
 
-      numParticles = p.round(initialParticles * width/800);
+      numParticles = p.round(initialParticles * area / (800*400));
       let numMasked = p.round(numParticles * maskusage);
 
       particles = [];
@@ -285,11 +300,12 @@ function sketch(parent) { // we pass the sketch data from the parent
     p.windowResized = function() {
       //console.log('p5 canvas resized');
       width = target.clientWidth;
+      height = width * parent.data.height;
       p.resizeCanvas(width, height);
 
       mouseOnScreen = false;
 
-      createParticles(width);
+      createParticles(width*height);
 
 
     };
