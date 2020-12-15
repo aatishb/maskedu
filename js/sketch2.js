@@ -94,19 +94,11 @@ function sketch(parent) { // we pass the sketch data from the parent
       // console.log('data changed');
       // console.log('x: ', val.x, 'y: ', val.y);
       updateParticles(width);
-      paused = false;
+      paused = parent.data.paused;
     };
 
     p.mouseClicked = function() {
       
-      if (parent.data.pausable) {
-        checkIfMouseIsOverCanvas();
-        
-        if (mouseOnScreen) {
-          paused = !paused;
-        }
-      }
-
     }
 
     // this is a new function we've added to p5
@@ -305,7 +297,7 @@ function sketch(parent) { // we pass the sketch data from the parent
 
       mouseOnScreen = false;
 
-      createParticles(width*height);
+      createParticles(width * height);
 
 
     };

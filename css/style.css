@@ -343,6 +343,29 @@ a {
   flex-basis: 33%;
 }
 
+button {
+  padding: 0.3rem;
+  font-size: 1rem;
+  width: 5rem;
+
+  text-align: center;
+  text-decoration: none;
+
+  transition-duration: 0.4s;
+
+  background-color: rgb(85, 56, 100);
+  color: rgb(254, 199, 81);
+  border: 0.125rem solid rgb(85, 56, 100);
+  border-radius: 0.25rem;
+}
+
+button:hover {
+  background-color: rgb(69,10,76);
+  border: 0.125rem solid rgb(69,10,76);
+  color: rgb(254, 199, 81);
+}
+
+
 .slider {
   -webkit-appearance: none;
   width: 100%;

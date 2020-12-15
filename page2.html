@@ -53,7 +53,7 @@
       This <b>double protection</b> makes masks much more effective than you might intuitively expect.
     </p>
 
-    <p>So here are all four interactions through which an airborne disease can spread from person to person.</p>
+    <p>Here are all four interactions by which a contagious respiratory disease can spread from one person to another.</p>
     <br>
 
   </div>
@@ -90,7 +90,8 @@
       </div>
 
       <div class="caption">
-        The four ways that COVID-19 can spread from person to person. This assumes a 50% effective mask.
+        The four ways that COVID-19 can spread through the air from person to person.<br>
+        The drop in disease transmission is calculated assuming a 50% effective mask.
       </div>
 
     </div>
@@ -120,15 +121,15 @@
     <aside @click="expandaside1 = true;">
       <span>
         <p>
-          What types of the four different interactions could happen in a community where <b>no one</b> wore a mask? What would be the overall drop in transmission in the community?
+          What types of the four different interactions could happen in a community where <b>no one</b> wore a mask? What would be the overall drop in transmission in this community?
           <span v-if="!expandaside1">(Click to expand)</span>
         </p>
       </span>
 
       <span v-if="expandaside1">
         <p>
-          Since interactions <span class="orange">2</span>, <span class="orange">3</span>, and <span class="yellow">4</span> require at least one person to wear a mask, these interactions could not occur in this example.
-          Only <span class="red">interaction 1</span> can occur in this example, and so the community would see <span class="red">no drop</span> in disease transmission.
+          Since interactions <span class="orange"><b>2</b></span>, <span class="orange"><b>3</b></span>, and <span class="yellow"><b>4</b></span> require at least one person to wear a mask, these interactions could not happen in this example.
+          Only <span class="red"><b>interaction 1</b></span> can occur in this example, and so the community would see a <span class="red"><b>0% drop</b></span> in disease transmission.
         </p>
 
         <div class="graphic" style="font-style: normal !important;">
@@ -189,15 +190,15 @@
     <aside @click="expandaside2 = true;">
       <span>
         <p>
-          What types of the four different interactions could happen in a community where <b>everyone</b> wore a mask? What would be the overall drop in transmission in the community?
+          What types of the four different interactions could happen in a community where <b>everyone</b> wore a mask? What would be the overall drop in transmission in this community?
           <span v-if="!expandaside2">(Click to expand)</span>
         </p>
       </span>
 
       <span v-if="expandaside2">
         <p>
-          Since interactions <span class="red">1</span>, <span class="orange">2</span>, and <span class="orange">3</span> require at least one person to <b>not</b> wear a mask, these interactions could not occur in this example.
-          Only <span class="yellow">interaction 4</span> can occur in this example, and so assuming that masks are 50% effective, the community would see a <span class="yellow">75% drop</span> in disease transmission.
+          Since interactions <span class="red"><b>1</b></span>, <span class="orange"><b>2</b></span>, and <span class="orange"><b>3</b></span> require at least one person to <b>not</b> wear a mask, these interactions could not happen in this example.
+          Only <span class="yellow"><b>interaction 4</b></span> can occur in this example, and so assuming that masks are 50% effective, the community would see a <span class="yellow"><b>75% drop</b></span> in disease transmission.
         </p>
 
         <div class="graphic" style="font-style: normal !important;">
@@ -254,54 +255,50 @@
 
     <p>How does the likelihood of each type of interaction depend on the mask usage?</p>
 
-    <label class="row half bigsplash" style="margin-bottom: 0.75rem;">
-      <div>Mask Usage: <span class="dotted">{{convertToPercent(pnetwork)}}</span>%</div>
-      <slider v-model="pnetwork" :min="0" :max="1" :step="0.01"></slider>
-    </label>
+    <div style="padding: 1rem; border: 1px solid rgb(255, 190, 137);">
 
-    <network :maskusage="pnetwork" :height="0.5" :networkdata="networkdata" :pausable="true"></network>
-    <div class="caption">
-      A community where <span class="dotted">{{convertToPercent(pnetwork)}}</span>% of people wear masks.<br>
-      (Click on the simulation to pause/resume)
+      <label class="row small-big-small bigsplash" style="margin-bottom: 0.75rem;">
+        <div style="margin: 0.5rem;">Mask Usage: <span class="dotted">{{convertToPercent(pnetwork)}}</span>%</div>
+        <slider v-model="pnetwork" :min="0" :max="1" :step="0.01" style="margin: 0.5rem;"></slider>
+        <button @click="paused = !paused;" style="margin: 0.5rem;" class="button">{{playpause}}</button>
+      </label>
+
+      <network :maskusage="pnetwork" :height="0.5" :networkdata="networkdata" :paused=paused></network>
+      <div class="caption">
+        A community where <span class="dotted">{{convertToPercent(pnetwork)}}</span>% of people wear masks.
+      </div>
+
+      <br>
+
+      <div class="row small-big">
+
+        <div class="column fiftypx">
+          <div class="center">Interaction Type</div>
+          <div class="row half"><div class="red center bigger">1</div> <div class="center">😐😐</div></div>
+          <div class="row half"><div class="orange center bigger">2,3</div> <div class="center">😷😐+😐😷</div></div>
+          <div class="row half"><div class="yellow center bigger">4</div> <div class="center">😷😷</div></div>
+        </div>
+
+        <div class="column fiftypx">
+          <div class="center">Percentage of Interactions Observed</div>
+          <percentbar :color="red" :percent="p0"></percentbar>
+          <percentbar :color="orange" :percent="p1"></percentbar>
+          <percentbar :color="yellow" :percent="p2"></percentbar>
+        </div>
+
+      </div>
+
     </div>
-
-    <br>
-
-    <div class="row small-big">
-
-      <div class="column fiftypx">
-        <div class="center">Interaction Type</div>
-        <div class="row half"><div class="red center bigger">1</div> <div class="center">😐😐</div></div>
-        <div class="row half"><div class="orange center bigger">2+3</div> <div class="center">😐😷+😷😐</div></div>
-        <div class="row half"><div class="yellow center bigger">4</div> <div class="center">😷😷</div></div>
-      </div>
-
-      <div class="column fiftypx">
-        <div class="center">Percentage of Observed Interactions</div>
-        <percentbar :color="red" :percent="p0"></percentbar>
-        <percentbar :color="orange" :percent="p1"></percentbar>
-        <percentbar :color="yellow" :percent="p2"></percentbar>
-      </div>
-
-    </div>
-
-      <!--
-      <div class="column fiftypx">
-        <div class="center">Interaction Type</div>
-        <div class="center">1 😐😐</div>
-        <div class="center">2+3 😐😷+😷😐</div>
-        <div class="center">4 😷😷</div>
-      </div>
-    -->
-
 
     <h2>How Masks Protect Communities</h2>
 
     <p>
-      Let's apply this logic to any level of mask usage.
+      Now that you know what to expect from the simulation, let's compare this to the math.
       Once again, we'll assume that each mask is 50% effective.
       Drag the slider below to see how disease transmission in a community depends on mask usage.
     </p>
+
+    <p>Does this line up with what you expect?</p>
 
     <label class="row half bigsplash">
       <div>Mask Usage: <span class="dotted">{{convertToPercent(p)}}</span>%</div>

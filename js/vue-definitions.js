@@ -47,10 +47,10 @@ Vue.component('network', {
 
   template: `
     <div class="nocursor">
-      <p5 src="js/sketch2.js" :data="{maskusage: maskusage, height: height, networkdata: networkdata, pausable: pausable}" v-bind.sync="networkdata"></p5>
+      <p5 src="js/sketch2.js" :data="{maskusage: maskusage, height: height, networkdata: networkdata, paused: paused}" v-bind.sync="networkdata"></p5>
     </div>`,
 
-  props: ['maskusage', 'height', 'networkdata', 'pausable']
+  props: ['maskusage', 'height', 'networkdata', 'paused']
 })
 
 // percentage bar component
@@ -268,7 +268,8 @@ let app = new Vue({
     },
     red: 'rgb(220, 60, 60)',
     orange: 'rgb(220, 142, 0)',
-    yellow: 'rgb(220, 220, 110)'
+    yellow: 'rgb(220, 220, 110)',
+    paused: false
   },
 
   methods: {
@@ -284,6 +285,11 @@ let app = new Vue({
   },
 
   computed: {
+
+    playpause() {
+      if (this.paused) {return 'Play';}
+      else {return 'Pause';}
+    },
 
     fontSize() {
       return parseInt(window.getComputedStyle(document.getElementById("root")).fontSize.slice(0,-2));
