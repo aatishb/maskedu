@@ -45,7 +45,7 @@
       When both the contagious and the susceptible person wear 50% effective masks, the first mask cuts disease transmission in half, and the second mask cuts it in half again. So disease transmission is 50% × 50% = 25% (compared to when neither wear masks), which means the <b>drop in disease transmission</b> is 75%.
     </p>
 
-    <img src="assets/route4-inv.png" alt="Disease Transmission in Route 4">
+    <img src="assets/route4-inv.png" alt="Disease Transmission in Interaction 4">
 
     <p>
       If you think about it, it's surprising that 50% effective masks can reduce disease transmission by 75%.
@@ -53,17 +53,26 @@
       This <b>double protection</b> makes masks much more effective than you might intuitively expect.
     </p>
 
-    <p>So here are all four routes through which an airborne disease can spread from person to person.</p>
+    <p>So here are all four interactions through which an airborne disease can spread from person to person.</p>
+    <br>
 
   </div>
 
   <div class="graphic">
     <div class="graphic-container">
 
-      <div class="row big-small">
+      <div class="row small-big-small">
 
         <div class="column onehundredpx">
-          <div class="center">Disease Transmission Route</div>
+          <div class="center" style="height: 50px !important;">Interaction Type</div>
+          <div class="center"><span class="red bigger">1</span></div>
+          <div class="center"><span class="orange bigger">2</span></div>
+          <div class="center"><span class="orange bigger">3</span></div>
+          <div class="center"><span class="yellow bigger">4</span></div>
+        </div>
+
+        <div class="column onehundredpx">
+          <div class="center"  style="height: 50px !important;"></div>
           <anim :mask1="false" :mask2="false"></anim>
           <anim :mask1="true" :mask2="false" :eout="0.5"></anim>
           <anim :mask1="false" :mask2="true" :ein="0.5"></anim>
@@ -71,11 +80,11 @@
         </div>
 
         <div class="column onehundredpx">
-          <div class="center">Drop in Disease Transmission</div>
-          <div class="center"><span class="red">0%</span></div>
-          <div class="center"><span class="orange">50%</span></div>
-          <div class="center"><span class="orange">50%</span></div>
-          <div class="center"><span class="yellow">75%</span></div>
+          <div class="center"  style="height: 50px !important;">Drop in Disease Transmission</div>
+          <div class="center"><span class="red bigger">0%</span></div>
+          <div class="center"><span class="orange bigger">50%</span></div>
+          <div class="center"><span class="orange bigger">50%</span></div>
+          <div class="center"><span class="yellow bigger">75%</span></div>
         </div>
 
       </div>
@@ -100,6 +109,12 @@
     <p>Well, in the extreme limits, this is straightforward.</p> 
 
     <p>For example, what if <b>no one</b> wore a mask?</p>
+    <br>
+
+    <network :maskusage="0" :height="0.5"></network>
+    <div class="caption">
+      A community where no one wears a mask.<br>
+    </div>
 
     <br>
     <aside @click="expandaside1 = true;">
@@ -112,20 +127,64 @@
 
       <span v-if="expandaside1">
         <p>
-          In this case whenever two people meet, the chance that <span class="red">neither wears a mask</span> is 100%. This means only <span class="red">first route</span> of disease transmission can happen, and so the community would see <span class="red">no drop</span> in disease transmission.
-
+          Since interactions <span class="orange">2</span>, <span class="orange">3</span>, and <span class="yellow">4</span> require at least one person to wear a mask, these interactions could not occur in this example.
+          Only <span class="red">interaction 1</span> can occur in this example, and so the community would see <span class="red">no drop</span> in disease transmission.
         </p>
 
-        <network :maskusage="0"></network>
-        <div class="caption">
-          A community where no one wears a mask.<br>
-          (Click on the simulation to pause/resume.)
+        <div class="graphic" style="font-style: normal !important;">
+          <div class="graphic-container">
+            <div class="row small-small-big-small">
+
+              <div class="column onehundredpx">
+                <div class="center">Could This Happen?</div>
+                <div class="center"><span class="bigger">✅</span></div>
+                <div class="center"><span class="bigger">🚫</span></div>
+                <div class="center"><span class="bigger">🚫</span></div>
+                <div class="center"><span class="bigger">🚫</span></div>
+              </div>
+
+              <div class="column onehundredpx">
+                <div class="center">Interaction Type</div>
+                <div class="center"><span class="red bigger">1</span></div>
+                <div class="center"><span class="orange bigger">2</span></div>
+                <div class="center"><span class="orange bigger">3</span></div>
+                <div class="center"><span class="yellow bigger">4</span></div>
+              </div>
+
+              <div class="column onehundredpx">
+                <div class="center"></div>
+                <anim :mask1="false" :mask2="false"></anim>
+                <anim :mask1="true" :mask2="false" :eout="0.5"></anim>
+                <anim :mask1="false" :mask2="true" :ein="0.5"></anim>
+                <anim :mask1="true" :mask2="true" :eout="0.5" :ein="0.5"></anim>
+              </div>
+
+              <div class="column onehundredpx">
+                <div class="center">Drop in Disease Transmission</div>
+                <div class="center"><span class="red bigger">0%</span></div>
+                <div class="center"><span class="orange bigger">50%</span></div>
+                <div class="center"><span class="orange bigger">50%</span></div>
+                <div class="center"><span class="yellow bigger">75%</span></div>
+              </div>
+
+            </div>
+          </div>
         </div>
+
 
       </span>
     </aside>
     <br>
+
     <p>What if <b>everyone</b> wore a mask?</p>
+    <br>
+
+    <network :maskusage="1" :height="0.5"></network>
+    <div class="caption">
+      A community where every one wears a mask.<br>
+    </div>
+
+
     <br>
     <aside @click="expandaside2 = true;">
       <span>
@@ -137,39 +196,75 @@
 
       <span v-if="expandaside2">
         <p>
-          In this case whenever two people meet, the chance that they <span class="yellow">both wear masks</span> is 100%.
-          This means only the <span class="yellow">last route</span> of disease transmission can happen.
-          Assuming masks are 50% effective in each direction, the community would see a <span class="yellow">75% drop</span> in disease transmission.
+          Since interactions <span class="red">1</span>, <span class="orange">2</span>, and <span class="orange">3</span> require at least one person to <b>not</b> wear a mask, these interactions could not occur in this example.
+          Only <span class="yellow">interaction 4</span> can occur in this example, and so assuming that masks are 50% effective, the community would see a <span class="yellow">75% drop</span> in disease transmission.
         </p>
 
-        <network :maskusage="1"></network>
-        <div class="caption">
-          A community where every one wears a mask.<br>
-          (Click on the simulation to pause/resume.)
+        <div class="graphic" style="font-style: normal !important;">
+          <div class="graphic-container">
+            <div class="row small-small-big-small">
+
+              <div class="column onehundredpx">
+                <div class="center">Could This Happen?</div>
+                <div class="center"><span class="bigger">🚫</span></div>
+                <div class="center"><span class="bigger">🚫</span></div>
+                <div class="center"><span class="bigger">🚫</span></div>
+                <div class="center"><span class="bigger">✅</span></div>
+              </div>
+
+              <div class="column onehundredpx">
+                <div class="center">Interaction Type</div>
+                <div class="center"><span class="red bigger">1</span></div>
+                <div class="center"><span class="orange bigger">2</span></div>
+                <div class="center"><span class="orange bigger">3</span></div>
+                <div class="center"><span class="yellow bigger">4</span></div>
+              </div>
+
+              <div class="column onehundredpx">
+                <div class="center"></div>
+                <anim :mask1="false" :mask2="false"></anim>
+                <anim :mask1="true" :mask2="false" :eout="0.5"></anim>
+                <anim :mask1="false" :mask2="true" :ein="0.5"></anim>
+                <anim :mask1="true" :mask2="true" :eout="0.5" :ein="0.5"></anim>
+              </div>
+
+              <div class="column onehundredpx">
+                <div class="center">Drop in Disease Transmission</div>
+                <div class="center"><span class="red bigger">0%</span></div>
+                <div class="center"><span class="orange bigger">50%</span></div>
+                <div class="center"><span class="orange bigger">50%</span></div>
+                <div class="center"><span class="yellow bigger">75%</span></div>
+              </div>
+
+            </div>
+          </div>
         </div>
 
       </span>
     </aside>
 
     <p>
-      So when <i>everyone</i> wears a mask (or when <i>no one</i> wears one), we can calculate the drop in disease transmission in the community, because there's only one route involved.
+      So when <i>everyone</i> wears a mask (or when <i>no one</i> wears one), we can calculate the drop in disease transmission in the community, because there's only one type of interaction involved.
     </p>
 
     <p>
       But in reality, some people wear masks and others don’t.
-      Which means the virus can spread through a mix of all four routes.
-      How likely each route is will depend on how many people wear masks.
+      Which means the virus can spread through a <b>mix of all four interactions</b>.
+      How likely each interaction is will depend on how many people wear masks.
     </p>
+
+    <p>How does this mix of interactions change as you vary the mask usage?</p>
 
     <label class="row half bigsplash" style="margin-bottom: 0.75rem;">
       <div>Mask Usage: <span class="dotted">{{convertToPercent(pnetwork)}}</span>%</div>
       <slider v-model="pnetwork" :min="0" :max="1" :step="0.01"></slider>
     </label>
 
-    <network :maskusage="pnetwork"></network>
+    <br>
+
+    <network :maskusage="pnetwork" :height="1"></network>
     <div class="caption">
-      A community where some percentage of people wear masks.<br>
-      (Click on the simulation to pause/resume.)
+      A community where <span class="dotted">{{convertToPercent(pnetwork)}}</span>% of people wear masks.<br>
     </div>
 
     <h2>How Masks Protect Communities</h2>
@@ -185,15 +280,25 @@
       <slider v-model="p" :min="0" :max="1" :step="0.01"></slider>
     </label>
 
+    <br>
+
   </div>
 
   <div class="graphic">
     <div class="graphic-container">
 
-      <div class="row big-small-small padabove">
+      <div class="row small-big-small-small padabove">
 
         <div class="column onehundredpx">
-          <div class="center">Disease Transmission Route</div>
+          <div class="center" style="height: 50px !important;">Interaction Type</div>
+          <div class="center"><span class="red bigger">1</span></div>
+          <div class="center"><span class="orange bigger">2</span></div>
+          <div class="center"><span class="orange bigger">3</span></div>
+          <div class="center"><span class="yellow bigger">4</span></div>
+        </div>
+
+        <div class="column onehundredpx">
+          <div class="center" style="height: 50px !important;"></div>
           <anim :mask1="false" :mask2="false"></anim>
           <anim :mask1="true" :mask2="false" :eout="eout"></anim>
           <anim :mask1="false" :mask2="true" :ein="ein"></anim>
@@ -201,19 +306,19 @@
         </div>
 
         <div class="column onehundredpx">
-          <div class="center">Drop in Disease Transmission</div>
-          <div class="center"><span><span class="dotted">{{convertToPercent(d1)}}</span>%</span></div>
-          <div class="center"><span><span class="dotted">{{convertToPercent(d2)}}</span>%</span></div>
-          <div class="center"><span><span class="dotted">{{convertToPercent(d3)}}</span>%</span></div>
-          <div class="center"><span><span class="dotted">{{convertToPercent(d4)}}</span>%</span></div>
+          <div class="center" style="height: 50px !important;">Percentage of Interactions</div>
+          <div class="center"><span class="red bigger"><span class="dotted">{{convertToPercent(l1)}}</span>%</span></div>
+          <div class="center"><span class="orange bigger"><span class="dotted">{{convertToPercent(l2)}}</span>%</span></div>
+          <div class="center"><span class="orange bigger"><span class="dotted">{{convertToPercent(l3)}}</span>%</span></div>
+          <div class="center"><span class="yellow bigger"><span class="dotted">{{convertToPercent(l4)}}</span>%</span></div>
         </div>
 
         <div class="column onehundredpx">
-          <div class="center">Chance of This Route</div>
-          <div class="center"><span><span class="dotted">{{convertToPercent(l1)}}</span>%</span></div>
-          <div class="center"><span><span class="dotted">{{convertToPercent(l2)}}</span>%</span></div>
-          <div class="center"><span><span class="dotted">{{convertToPercent(l3)}}</span>%</span></div>
-          <div class="center"><span><span class="dotted">{{convertToPercent(l4)}}</span>%</span></div>
+          <div class="center" style="height: 50px !important;">Drop in Disease Transmission</div>
+          <div class="center"><span class="red bigger"><span>{{convertToPercent(d1)}}</span>%</span></div>
+          <div class="center"><span class="orange bigger"><span>{{convertToPercent(d2)}}</span>%</span></div>
+          <div class="center"><span class="orange bigger"><span>{{convertToPercent(d3)}}</span>%</span></div>
+          <div class="center"><span class="yellow bigger"><span>{{convertToPercent(d4)}}</span>%</span></div>
         </div>
 
       </div>

@@ -47,10 +47,10 @@ Vue.component('network', {
 
   template: `
     <div class="nocursor">
-      <p5 src="js/sketch2.js" :data="{maskusage: maskusage}"></p5>
+      <p5 src="js/sketch2.js" :data="{maskusage: maskusage, height: height}"></p5>
     </div>`,
 
-  props: ['maskusage']
+  props: ['maskusage', 'height']
 })
 
 // mask animation component

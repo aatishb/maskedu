@@ -43,7 +43,7 @@ function sketch(parent) { // we pass the sketch data from the parent
     p.setup = function() {
       target = parent.$el;
       width = target.clientWidth;
-      height = 400;
+      height = 400 * parent.data.height;
       let canvas = p.createCanvas(width, height);
       canvas.parent(parent.$el);
       p.noStroke();
@@ -91,11 +91,14 @@ function sketch(parent) { // we pass the sketch data from the parent
 
     p.mouseClicked = function() {
       
+      /*
       checkIfMouseIsOverCanvas();
       
       if (mouseOnScreen) {
         paused = !paused;
       }
+      */
+      
     }
 
     // this is a new function we've added to p5
