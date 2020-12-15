@@ -93,6 +93,9 @@ a {
   color: rgb(220, 142, 0);
 }
 
+.big {
+  font-size: 1.25rem;
+}
 .bigger {
   font-size: 1.75rem;
   font-weight: 600;
@@ -160,7 +163,7 @@ a {
 .column {
   display: flex;
   flex-direction: column;
-  font-size: 1.25rem;
+  /*font-size: 1.25rem;*/
   color: rgb(255, 190, 137);
 }
 
@@ -374,8 +377,8 @@ button:hover {
   background: rgb(85, 56, 100);
   outline: none;
   opacity: 1;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
+  -webkit-transition: .4s;
+  transition-duration: 0.4s;
 }
 
 .slider::-webkit-slider-thumb {
@@ -396,6 +399,10 @@ button:hover {
   border-color: rgb(40, 32, 68);
   background: rgb(254, 199, 81);
   cursor: pointer;
+}
+
+.slider:hover {
+  background: rgb(69,10,76);;
 }
 
 .header {

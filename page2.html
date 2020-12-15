@@ -137,7 +137,7 @@
             <div class="row small-small-big-small">
 
               <div class="column onehundredpx">
-                <div class="center">Could This Happen?</div>
+                <div class="center big">Could This Happen?</div>
                 <div class="center"><span class="bigger">✅</span></div>
                 <div class="center"><span class="bigger">🚫</span></div>
                 <div class="center"><span class="bigger">🚫</span></div>
@@ -145,7 +145,7 @@
               </div>
 
               <div class="column onehundredpx">
-                <div class="center">Interaction Type</div>
+                <div class="center big">Interaction Type</div>
                 <div class="center"><span class="red bigger">1</span></div>
                 <div class="center"><span class="orange bigger">2</span></div>
                 <div class="center"><span class="orange bigger">3</span></div>
@@ -153,7 +153,7 @@
               </div>
 
               <div class="column onehundredpx">
-                <div class="center"></div>
+                <div class="center big"></div>
                 <anim :mask1="false" :mask2="false"></anim>
                 <anim :mask1="true" :mask2="false" :eout="0.5"></anim>
                 <anim :mask1="false" :mask2="true" :ein="0.5"></anim>
@@ -161,7 +161,7 @@
               </div>
 
               <div class="column onehundredpx">
-                <div class="center">Drop in Disease Transmission</div>
+                <div class="center big">Drop in Disease Transmission</div>
                 <div class="center"><span class="red bigger">0%</span></div>
                 <div class="center"><span class="orange bigger">50%</span></div>
                 <div class="center"><span class="orange bigger">50%</span></div>
@@ -206,7 +206,7 @@
             <div class="row small-small-big-small">
 
               <div class="column onehundredpx">
-                <div class="center">Could This Happen?</div>
+                <div class="center big">Could This Happen?</div>
                 <div class="center"><span class="bigger">🚫</span></div>
                 <div class="center"><span class="bigger">🚫</span></div>
                 <div class="center"><span class="bigger">🚫</span></div>
@@ -214,7 +214,7 @@
               </div>
 
               <div class="column onehundredpx">
-                <div class="center">Interaction Type</div>
+                <div class="center big">Interaction Type</div>
                 <div class="center"><span class="red bigger">1</span></div>
                 <div class="center"><span class="orange bigger">2</span></div>
                 <div class="center"><span class="orange bigger">3</span></div>
@@ -222,7 +222,7 @@
               </div>
 
               <div class="column onehundredpx">
-                <div class="center"></div>
+                <div class="center big"></div>
                 <anim :mask1="false" :mask2="false"></anim>
                 <anim :mask1="true" :mask2="false" :eout="0.5"></anim>
                 <anim :mask1="false" :mask2="true" :ein="0.5"></anim>
@@ -230,7 +230,7 @@
               </div>
 
               <div class="column onehundredpx">
-                <div class="center">Drop in Disease Transmission</div>
+                <div class="center big">Drop in Disease Transmission</div>
                 <div class="center"><span class="red bigger">0%</span></div>
                 <div class="center"><span class="orange bigger">50%</span></div>
                 <div class="center"><span class="orange bigger">50%</span></div>
@@ -255,7 +255,7 @@
 
     <p>How does the likelihood of each type of interaction depend on the mask usage?</p>
 
-    <div style="padding: 1rem; border: 1px solid rgb(255, 190, 137);">
+    <div style="padding: 1rem; border: 1px solid rgba(255, 190, 137, 0.5);">
 
       <label class="row small-big-small bigsplash" style="margin-bottom: 0.75rem;">
         <div style="margin: 0.5rem;">Mask Usage: <span class="dotted">{{convertToPercent(pnetwork)}}</span>%</div>
@@ -300,19 +300,17 @@
 
     <p>Does this line up with what you expect?</p>
 
-    <label class="row half bigsplash">
-      <div>Mask Usage: <span class="dotted">{{convertToPercent(p)}}</span>%</div>
-      <slider v-model="p" :min="0" :max="1" :step="0.01"></slider>
-    </label>
-
-    <br>
-
   </div>
 
   <div class="graphic">
-    <div class="graphic-container">
+    <div class="graphic-container" style="padding: 1rem; border: 1px solid rgba(255, 190, 137, 0.5);">
 
-      <div class="row small-big-small-small padabove">
+      <label class="row half bigsplash">
+        <div>Mask Usage: <span class="dotted">{{convertToPercent(p)}}</span>%</div>
+        <slider v-model="p" :min="0" :max="1" :step="0.01"></slider>
+      </label>
+
+      <div class="row small-big-small-small" style="padding-top: 1rem;">
 
         <div class="column onehundredpx">
           <div class="center" style="height: 50px !important;">Interaction Type</div>
