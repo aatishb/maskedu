@@ -31,7 +31,7 @@ Vue.component('graph', {
 Vue.component('slider', {
   props: ['value', 'min', 'max', 'step'],
 
-  template: `<div><input type="range" :min="min" :max="max" :step="step" :value="value" @input="sliderChanged" class="slider"></input></div>`,
+  template: `<div class="row verticalalign"><input type="range" :min="min" :max="max" :step="step" :value="value" @input="sliderChanged" class="slider"></input></div>`,
 
   methods: {
     sliderChanged: function(event) {
@@ -57,11 +57,11 @@ Vue.component('network', {
 
 Vue.component('percentbar', {
   template: `
-    <div class="row half">
+    <div class="row half verticalalign">
 
       <div :style="{color: color}" class="center bigger">{{percent}}</div>
 
-      <div :style="{border: '1px solid ' + color}">
+      <div :style="{border: '1px solid ' + color, height: '25px'}">
         <div :style="{backgroundColor: color, width: percent, height: '100%'}">
         </div>
       </div>
@@ -282,6 +282,12 @@ let app = new Vue({
       return this.R0 * (1 - this.ein * p) * (1 - this.eout * p);
     },
 
+  },
+
+  watch: {
+    pnetwork() {
+      this.paused = false;
+    }
   },
 
   computed: {

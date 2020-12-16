@@ -156,6 +156,11 @@ a {
   justify-content: center;
 }
 
+.verticalalign {
+  align-items: center;
+}
+
+
 .wrap {
   flex-wrap: wrap;
 }
@@ -285,7 +290,7 @@ a {
 }
 
 .fiftypx > div {
-  height: 50;
+  height: 50px;
 }
 
 .short {
