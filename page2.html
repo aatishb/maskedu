@@ -54,12 +54,14 @@
     </p>
 
     <p>Here are all four interactions by which a contagious respiratory disease can spread from one person to another.</p>
-    <br>
 
   </div>
 
   <div class="graphic">
+
     <div class="graphic-container">
+
+    <div style="width: 100%"><h3 id="1"><a href="#1">Simulation 2.1</a></h3></div>
 
       <div class="row small-big-small">
 
@@ -110,7 +112,8 @@
     <p>Well, in the extreme limits, this is straightforward.</p> 
 
     <p>For example, what if <b>no one</b> wore a mask?</p>
-    <br>
+
+    <h3 id="2"><a href="#2">Simulation 2.2</a></h3>
 
     <network :maskusage="0" :height="0.33"></network>
     <div class="caption">
@@ -178,7 +181,8 @@
     <br>
 
     <p>What if <b>everyone</b> wore a mask?</p>
-    <br>
+
+    <h3 id="3"><a href="#3">Simulation 2.3</a></h3>
 
     <network :maskusage="1" :height="0.33"></network>
     <div class="caption">
@@ -245,7 +249,7 @@
     </aside>
 
     <p>
-      So when <i>everyone</i> wears a mask (or when <i>no one</i> wears one), we can calculate the drop in disease transmission in the community, because there's only one type of interaction involved.
+      When <i>everyone</i> wears a mask (or when <i>no one</i> wears one), we can calculate the drop in disease transmission in the community, because there's only one type of interaction involved.
     </p>
 
     <p>
@@ -253,7 +257,11 @@
       Which means the virus can spread through a <b>mix of all four interactions</b>.
     </p>
 
-    <p>How does the likelihood of each type of interaction depend on the mask usage?</p>
+    <p>So how does the likelihood of each type of interaction depend on the mask usage? To find out, take a look at the simulation below.</p>
+
+    <p>This simulation shows how often each type of interaction occurs in a crowd of people who are interacting with each other at random. Although the exact percentage of each interaction changes from moment to moment, can you identify any patterns or trends?</p>
+
+    <h3 id="4"><a href="#4">Simulation 2.4</a></h3>
 
     <div style="padding: 1rem; border: 1px solid rgba(255, 190, 137, 0.5);">
 
@@ -293,13 +301,23 @@
     <h2>How Masks Protect Communities</h2>
 
     <p>
-      Now that you know what to expect from the simulation, let's compare this to the math.
-      Once again, we'll assume that each mask is 50% effective.
-      Drag the slider below to see how disease transmission in a community depends on mask usage.
+      The simulation above shows us how the percentage of interactions depends on mask usage. However, because this simulation shows the exact number of interactions at a given time, these percentages can change from moment to moment, i.e. they can <b>fluctuate</b>.
     </p>
 
-    <p>Does this line up with what you expect?</p>
+    <p>
+      We can solve this problem by <b>averaging</b> the numbers of interactions. The simulation below shows the average percentage of interactions of each type instead of the moment-to-moment percentages. By averaging the data, we can smooth out the fluctuations and identify the trends more clearly.
+    </p> 
 
+    <p>
+      Drag the slider below to see how disease transmission in a community depends on mask usage. Do these average percentages line up with what you expect based on the previous simulation?
+    </p>
+
+  </div>
+
+  <div class="graphic">
+    <div class="graphic-container">
+      <div style="width:100%;"><h3 id="5"><a href="#5">Simulation 2.5</a></h3></div>
+    </div>
   </div>
 
   <div class="graphic">
